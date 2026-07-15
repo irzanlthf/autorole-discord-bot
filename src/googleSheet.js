@@ -1,11 +1,31 @@
 const { google } = require("googleapis");
-const path = require("path");
+const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
 const config = require("../config/config");
 
-const auth = new google.auth.GoogleAuth({
-    keyFile: path.join(__dirname, "../credentials/discord-role-bot-502513-7f93320d1cf4.json"),
-    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
-});
+let auth;
+
+if (process.env.GOOGLE_CREDENTIALS) {
+
+    auth = new google.auth.GoogleAuth({
+        credentials: JSON.parse(process.env.GOOGLE_CREDENTIALS),
+        scopes: [
+            "https://www.googleapis.com/auth/spreadsheets",
+        ],
+    });
+
+} else {
+
+    auth = new google.auth.GoogleAuth({
+        keyFile: path.join(
+            __dirname,
+            "../credentials/discord-role-bot-502513-7f93320d1cf4.json"
+        ),
+        scopes: [
+            "https://www.googleapis.com/auth/spreadsheets",
+        ],
+    });
+
+}
 
 const sheets = google.sheets({
     version: "v4",
