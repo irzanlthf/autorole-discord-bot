@@ -64,7 +64,9 @@ async function syncRoles() {
     const summary = {
         checked: 0,
         success: 0,
+        successUsers: [],
         alreadyRole: 0,
+        alreadyRoleUsers: [],
         userNotFound: [],
         updates: [],
         syncTime: timestamp,
@@ -113,6 +115,7 @@ async function syncRoles() {
         if (member.roles.cache.has(role.id)) {
             console.log(`⚠ ${username} sudah memiliki role`);
             summary.alreadyRole++;
+            summary.alreadyRoleUsers.push(username);
             summary.updates.push({
                 rowNumber,
                 columnIndex: statusIndex,
@@ -127,6 +130,7 @@ async function syncRoles() {
             await member.roles.add(role);
             console.log(`✅ ${username}`);
             summary.success++;
+            summary.successUsers.push(username);
             summary.updates.push({
                 rowNumber,
                 columnIndex: statusIndex,

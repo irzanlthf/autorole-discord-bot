@@ -2,8 +2,8 @@ const { EmbedBuilder } = require("discord.js");
 
 async function sendLog(channel, summary) {
     console.log("========== LOGGER ==========");
-    // console.log(summary);
-    console.log("Channel :", channel.name);
+    console.log(summary);
+    // console.log("Channel :", channel.name);
 
     if (!channel) {
         console.log("❌ Channel log tidak ditemukan.");
@@ -16,38 +16,45 @@ async function sendLog(channel, summary) {
 
         .addFields(
             {
-                name: "📊 Checked",
-                value: `${summary.checked}`,
-                inline: true,
+                name: `📊 Checked - ${summary.checked}`,
+                // value: `${summary.checked}`,
+                inline: false,
             },
             {
-                name: "✅ Success",
-                value: `${summary.success}`,
-                inline: true,
+                name: `✅ Role Added — ${summary.success}`,
+                value:
+                    summary.successUsers.length === 0
+                        ? "Tidak ada"
+                        : summary.successUsers.join(", "),
+                inline: false,
             },
             {
-                name: "⚠ Already Role",
-                value: `${summary.alreadyRole}`,
-                inline: true,
+                name: `⚠ Already Role — ${summary.alreadyRole}`,
+                value:
+                    summary.alreadyRoleUsers.length === 0
+                        ? "Tidak ada"
+                        : summary.alreadyRoleUsers.join(", "),
+                inline: false,
             },
             {
-                name: "❌ USER_NOT_FOUND",
+                name: `❌ USER_NOT_FOUND — ${summary.userNotFound.length}`,
                 value:
                     summary.userNotFound.length === 0
                         ? "Tidak ada"
-                        : summary.userNotFound.join("\n"),
-            },
-            {
-                name: "⚡ Execution Time",
-                value: summary.executionTime,
-                inline: true,
-                
-            },
-            {
-                name: "🕒 Sync Time",
-                value: `${summary.syncTime} WIB`,
-                inline: true,
+                        : summary.userNotFound.join(", "),
+                inline: false,
             }
+            // {
+            //     name: "⚡ Execution Time",
+            //     value: summary.executionTime,
+            //     inline: true,
+                
+            // },
+            // {
+            //     name: "🕒 Sync Time",
+            //     value: `${summary.syncTime} WIB`,
+            //     inline: true,
+            // }
         )
         .setTimestamp();
 
