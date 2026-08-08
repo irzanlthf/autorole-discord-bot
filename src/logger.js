@@ -17,6 +17,7 @@ async function sendLog(channel, summary) {
         .addFields(
             {
                 name: `📊 Checked - ${summary.checked}`,
+                value: "\u200B",
                 // value: `${summary.checked}`,
                 inline: false,
             },
