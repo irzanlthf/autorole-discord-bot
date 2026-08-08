@@ -2,8 +2,8 @@ const { EmbedBuilder } = require("discord.js");
 
 async function sendLog(channel, summary) {
     console.log("========== LOGGER ==========");
-    console.log(summary);
-    // console.log("Channel :", channel.name);
+    // console.log(summary);
+    console.log("Channel :", channel.name);
 
     if (!channel) {
         console.log("❌ Channel log tidak ditemukan.");
