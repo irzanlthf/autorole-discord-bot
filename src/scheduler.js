@@ -66,8 +66,8 @@ function startScheduler() {
     // Jalankan setiap 45 menit
     // setInterval(runSync, 45 * 60 * 1000);
 
-    // Jalankan setiap 25 menit
-    setInterval(runSync, 10 * 60 * 1000);
+    // Jalankan setiap 3 menit
+    setInterval(runSync, 3 * 60 * 1000);
     
     // 1 menit (untuk test)
     //setInterval(runSync, 60 * 1000);
